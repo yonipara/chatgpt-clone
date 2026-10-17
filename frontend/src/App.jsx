@@ -5,6 +5,7 @@ import ChatHeader from "./components/ChatHeader/ChatHeader";
 import MessageList from "./components/MessageList/MessageList";
 import ChatInput from "./components/ChatInput/ChatInput";
 import "./App.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const API_BASE_URL = "http://localhost:8000/api/chat/conversations";
 
@@ -27,7 +28,7 @@ function App() {
 
   const fetchConversations = async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}`);
+      const response = await axios.get(`${API_URL}`);
       if (response.data.success) { // if success is true that is the response sent from our backend endpoint.
         setConversations(response.data.data.conversations);// our data comes in the form data.conversations and its an array.
       }
@@ -48,7 +49,7 @@ function App() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post(`${API_BASE_URL}`, {
+      const response = await axios.post(`${API_URL}`, {
         question,
       });
       if (response.data.success) {
