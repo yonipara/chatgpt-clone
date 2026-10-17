@@ -7,8 +7,12 @@ let DBMSconnection = mysql
     password: process.env.MYSQL_PASSWORD,
     host: process.env.MYSQL_HOST,
     database: process.env.MYSQL_DATABASE,
+    port: 55768, // IMPORTANT
+    ssl: {
+      rejectUnauthorized: false,
+    },
     multipleStatements: true, // used for using several queries
   })
   .promise();
 
-  module.exports = DBMSconnection;
+module.exports = DBMSconnection;
